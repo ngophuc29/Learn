@@ -12,8 +12,20 @@ class MyComponent extends React.Component {
         age: 18
     }
 
-    handleclick(event) {
-        console.log( this.state.name )
+
+    // chuyen cac function thanh arrow function de tranh loi this
+    handleclick=(event)=> {
+        //thay doi state hien tai thanh 1 bien khac
+        this.setState({
+            name:"ngokThank",
+            age: Math.floor(Math.random()*100)+1
+            
+        })
+
+        // this.setState({
+        //     age: Math.floor(Math.random()*100)+1
+        // })
+        console.log(this.state.name)
 
     }
     handleMouseOver(event) {
@@ -29,8 +41,8 @@ class MyComponent extends React.Component {
                 {
                     this.state.name
                 }
-                and I'm from {this.state.address}
-                <button onClick={this.handleclick}>Click me</button>
+                and I'm from {this.state.age}
+                <button onClick={(event)=>this.handleclick(event)}>Click me</button>
                 <button onMouseOver={this.handleMouseOver}>Hover Me </button>
             </div>
         );
