@@ -31,6 +31,16 @@ class MyComponent extends React.Component {
     handleMouseOver(event) {
         console.log(event.pageX)
     }
+
+
+    handleONchanInPut=(event)=> {
+        console.log(event.target.value)
+        this.setState({name:event.target.value})
+    }
+    handleSubmit= (event)=>{
+        event.preventDefault()
+       console.log(this.state)
+    }
     // jsx
     render() {
 
@@ -42,8 +52,22 @@ class MyComponent extends React.Component {
                     this.state.name
                 }
                 and I'm from {this.state.age}
-                <button onClick={(event)=>this.handleclick(event)}>Click me</button>
-                <button onMouseOver={this.handleMouseOver}>Hover Me </button>
+                {/* <button onClick={(event)=>this.handleclick(event)}>Click me</button>
+                <button onMouseOver={this.handleMouseOver}>Hover Me </button> */}
+
+
+                    {/* //dung onSubmit de submit form  */}
+                <form onSubmit={(event)=>this.handleSubmit(event)} action="">
+                    <input 
+                    type="text" name="" id="" 
+                    //dung onchange de lay gia tri bi thay doi ben trong input
+                    // onChange={(event)=>this.setState({name:event.target.value})}
+
+                    onChange={(event)=>this.handleONchanInPut(event)}
+
+                    />
+                    <button type="submit">Submit</button>
+                </form>
             </div>
         );
     }
