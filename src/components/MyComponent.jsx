@@ -7,22 +7,31 @@ import React from "react";
 // 1 class component
 class MyComponent extends React.Component {
     state = {
-        name:"PHuc",
-        address:'OK',
-        age:18
+        name: "PHuc",
+        address: 'OK',
+        age: 18
     }
 
+    handleclick(event) {
+        console.log( this.state.name )
+
+    }
+    handleMouseOver(event) {
+        console.log(event.pageX)
+    }
     // jsx
     render() {
 
         return (
 
             <div>
-                My name is 
+                My name is
                 {
-                     this.state.name
+                    this.state.name
                 }
-                 and I'm from {this.state.address}
+                and I'm from {this.state.address}
+                <button onClick={this.handleclick}>Click me</button>
+                <button onMouseOver={this.handleMouseOver}>Hover Me </button>
             </div>
         );
     }
