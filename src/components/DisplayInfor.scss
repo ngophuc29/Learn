@@ -1,0 +1,24 @@
+.red {
+    color: red;
+}
+
+.green {
+    color: green;
+}
+
+.show {
+    display: block;
+}
+
+.hide {
+    display: none;
+}
+.displayin4Container{
+    .red {
+        color: purple;
+    }
+    
+    .green {
+        color: green;
+    }
+}

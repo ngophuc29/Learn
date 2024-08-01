@@ -1,5 +1,6 @@
 import React from "react";
-import "../App.css"
+import "../App.scss"
+import "./DisplayInfor.scss"
 class DisplayInformation extends React.Component {
     state = {
         hideshow:true
@@ -8,7 +9,7 @@ class DisplayInformation extends React.Component {
         const { name, age, listUsers } = this.props
         
         return (
-            <div>
+            <div className="displayin4Container">
                 <div className="">My name's {name}</div>
                 <div className="">My age's {age}</div>
                 <hr />
