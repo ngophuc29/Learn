@@ -1,23 +1,48 @@
 import React from "react";
-
+import "../App.css"
 class DisplayInformation extends React.Component {
+    state = {
+        hideshow:true
+    }
     render() {
         const { name, age, listUsers } = this.props
-
+        
         return (
             <div>
                 <div className="">My name's {name}</div>
                 <div className="">My age's {age}</div>
                 <hr />
 
+                <button className=""
+                onClick={()=>this.setState({hideshow:!this.state.hideshow})}
+                > {
+                    this.state.hideshow==true?'Ẩn':'Hiện'
+                }
+                    </button>
+        
                 {listUsers.map((item) => {
-                    // console.log(item.name)
+                    // console.log(item )
                     return (
 
-                        <div key={item.id}>
+
+                        //show hide button 
+                        // cách 1
+                        // <div key={item.id} className={item.age > 18 ? 'red' : 'green',this.state.hideshow==true?'show':'hide'}>
+                        //     <div className="">My name's {item.name}</div>
+                        //     <div className="">My age's {item.age}</div>
+                        //     <hr />
+                        // </div>
+
+                        //cách 2 
+                        <div>
+                            {
+                                this.state.hideshow && 
+                                <div key={item.id} className={item.age > 18 ? 'red' : 'green' }>
                             <div className="">My name's {item.name}</div>
                             <div className="">My age's {item.age}</div>
                             <hr />
+                        </div>
+                            }
                         </div>
 
                     )
