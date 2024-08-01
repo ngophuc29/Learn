@@ -1,6 +1,8 @@
 import React from "react";
 import "../App.scss"
 import "./DisplayInfor.scss"
+
+import logo from "./../logo.svg"
 class DisplayInformation extends React.Component {
     state = {
         hideshow:true
@@ -48,6 +50,9 @@ class DisplayInformation extends React.Component {
 
                     )
                 })}
+
+
+                <img src={logo}/>
             </div>
         )
     }
