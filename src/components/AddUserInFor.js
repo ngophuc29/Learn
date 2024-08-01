@@ -1,6 +1,6 @@
 import React from "react";
 
-class UserInForm extends React.Component {
+class AddUserInForm extends React.Component {
     state = {
         name: "PHuc",
         address: 'OK',
@@ -39,6 +39,8 @@ class UserInForm extends React.Component {
     handleSubmit= (event)=>{
         event.preventDefault()
        console.log(this.state)
+
+       this.props.handleAddnewUser({name:this.state.name,age:this.state.age});
     }
     render(){
         return(
@@ -78,4 +80,4 @@ class UserInForm extends React.Component {
         
 }
 
-export default UserInForm
+export default AddUserInForm
