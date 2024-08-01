@@ -10,6 +10,23 @@ import DisplayInformation from "./DisplayInfor";
 class MyComponent extends React.Component {
 
     // jsx
+    state = {
+        listUsers:[
+            {
+                id:1,name:'John',age:'16',
+
+
+            },
+            {
+                id:2,name:'Monas',age:'19'
+
+            },
+            {
+                id:3,name:'James',age:'13'
+
+            }
+        ]
+    }
     render() {
         const myIn4=["1","2","3","4","5","6","7","8"]
 
@@ -24,7 +41,7 @@ class MyComponent extends React.Component {
                 <DisplayInformation
                 name="Ngo quang Phuc"
                 age="18"
-                myIn4={myIn4}
+                listUsers={this.state.listUsers}
                 ></DisplayInformation>
             </div>
         );
