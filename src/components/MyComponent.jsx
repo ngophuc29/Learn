@@ -31,29 +31,35 @@ class MyComponent extends React.Component {
     handleAddnewUser = (objUser) => {
         // alert('Add new user')
         console.log(objUser)
-        this.setState({listUsers: [...this.state.listUsers,objUser]})
+        this.setState({ listUsers: [...this.state.listUsers, objUser] })
     }
     render() {
         const myIn4 = ["1", "2", "3", "4", "5", "6", "7", "8"]
 
         return (
-
             <div>
 
-                <AddUserInForm
-                    handleAddnewUser={this.handleAddnewUser}
+                <div className="a">
 
-                ></AddUserInForm>
-                <br />
-                <br />
+                    <AddUserInForm
+                        handleAddnewUser={this.handleAddnewUser}
 
-                <DisplayInformation
-                    name="Ngo quang Phuc"
-                    age="18"
-                    listUsers={this.state.listUsers}
-                // truyền hàm qua props
-                ></DisplayInformation>
+                    ></AddUserInForm>
+                    <br />
+                    <br />
+
+                    <DisplayInformation
+                        name="Ngo quang Phuc"
+                        age="18"
+                        listUsers={this.state.listUsers}
+                    // truyền hàm qua props
+                    ></DisplayInformation>
+                </div>
+                <div className="b">
+
+                </div>
             </div>
+
         );
     }
 
