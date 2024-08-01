@@ -22,7 +22,7 @@ class DisplayInformation extends React.Component {
                     this.state.hideshow==true?'Ẩn':'Hiện'
                 }
                     </button>
-        
+        <hr/>
                 {listUsers.map((item) => {
                     // console.log(item )
                     return (
@@ -41,8 +41,13 @@ class DisplayInformation extends React.Component {
                             {
                                 this.state.hideshow && 
                                 <div key={item.id} className={item.age > 18 ? 'red' : 'green' }>
+                            <div className="">My id's {item.id}</div>
+
                             <div className="">My name's {item.name}</div>
                             <div className="">My age's {item.age}</div>
+                            <button
+                            onClick={()=>this.props.handleDeleteUser(item.id)}
+                            >Delete</button>
                             <hr />
                         </div>
                             }
@@ -52,7 +57,7 @@ class DisplayInformation extends React.Component {
                 })}
 
 
-                <img src={logo}/>
+                {/* <img src={logo}/> */}
             </div>
         )
     }

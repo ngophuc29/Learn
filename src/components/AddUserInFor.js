@@ -40,7 +40,7 @@ class AddUserInForm extends React.Component {
         event.preventDefault()
        console.log(this.state)
 
-       this.props.handleAddnewUser({name:this.state.name,age:this.state.age});
+       this.props.handleAddnewUser({id: Math.floor((Math.random() * 100) + 1) ,name:this.state.name,age:this.state.age});
     }
     render(){
         return(

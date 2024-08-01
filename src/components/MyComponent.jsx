@@ -31,8 +31,24 @@ class MyComponent extends React.Component {
     handleAddnewUser = (objUser) => {
         // alert('Add new user')
         console.log(objUser)
-        this.setState({ listUsers: [...this.state.listUsers, objUser] })
+        this.setState({ listUsers: [ objUser,...this.state.listUsers] })
     }
+    // handleDeleteUser = (userId) => {
+    //     const listUserClone = this.state.listUsers.filter((item) => item.id !== userId);
+    //     this.setState({
+    //         listUsers: listUserClone
+    //     });
+    // }
+    handleDeleteUser = (userId) => {
+        const listUserClone=[...this.state.listUsers]
+        let cc=[]
+          cc=listUserClone.filter((item)=>{
+            return item.id!==userId
+        })
+         this.setState(({
+            listUsers: cc
+        }))
+    }    
     render() {
         const myIn4 = ["1", "2", "3", "4", "5", "6", "7", "8"]
 
@@ -43,7 +59,7 @@ class MyComponent extends React.Component {
 
                     <AddUserInForm
                         handleAddnewUser={this.handleAddnewUser}
-
+                        
                     ></AddUserInForm>
                     <br />
                     <br />
@@ -52,6 +68,8 @@ class MyComponent extends React.Component {
                         name="Ngo quang Phuc"
                         age="18"
                         listUsers={this.state.listUsers}
+
+                        handleDeleteUser={this.handleDeleteUser}
                     // truyền hàm qua props
                     ></DisplayInformation>
                 </div>
