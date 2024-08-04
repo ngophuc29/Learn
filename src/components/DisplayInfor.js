@@ -103,7 +103,7 @@ const DisplayInformation=(props) => {
                         <hr />
         
                         <button className=""
-                            onClick={() => sethideshow( !this.state.hideshow  )}
+                            onClick={() => sethideshow( !hideshow  )}
                         > {
                                  hideshow == true ? 'Ẩn' : 'Hiện'
                             }

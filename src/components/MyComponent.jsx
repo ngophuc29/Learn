@@ -3,15 +3,91 @@
 // 1 class component
 // 2 function component
 
-import React from "react";
+import React, { useState } from "react";
 import AddUserInForm from "./AddUserInFor";
 import DisplayInformation from "./DisplayInfor";
 // 1 class component
-class MyComponent extends React.Component {
+// class MyComponent extends React.Component {
 
-    // jsx
-    state = {
-        listUsers: [
+//     // jsx
+//     state = {
+//         listUsers: [
+//             {
+//                 id: 1, name: 'John', age: '16',
+
+
+//             },
+//             {
+//                 id: 2, name: 'Monas', age: '19'
+
+//             },
+//             {
+//                 id: 3, name: 'James', age: '13'
+
+//             }
+//         ]
+//     }
+
+//     handleAddnewUser = (objUser) => {
+//         // alert('Add new user')
+//         console.log(objUser)
+//         this.setState({ listUsers: [objUser, ...this.state.listUsers] })
+//     }
+//     // handleDeleteUser = (userId) => {
+//     //     const listUserClone = this.state.listUsers.filter((item) => item.id !== userId);
+//     //     this.setState({
+//     //         listUsers: listUserClone
+//     //     });
+//     // }
+//     handleDeleteUser = (userId) => {
+//         const listUserClone = [...this.state.listUsers]
+//         let cc = []
+//         cc = listUserClone.filter((item) => {
+//             return item.id !== userId
+//         })
+//         this.setState(({
+//             listUsers: cc
+//         }))
+//     }
+//     render() {
+//         const myIn4 = ["1", "2", "3", "4", "5", "6", "7", "8"]
+
+//         return (
+//             <div>
+
+//                 <div className="a">
+
+//                     <AddUserInForm
+//                         handleAddnewUser={this.handleAddnewUser}
+
+//                     ></AddUserInForm>
+//                     <br />
+//                     <br />
+
+//                     <DisplayInformation
+//                         name="Ngo quang Phuc"
+//                         age="18"
+//                         listUsers={this.state.listUsers}
+
+//                         handleDeleteUser={this.handleDeleteUser}
+//                     // truyền hàm qua props
+//                     ></DisplayInformation>
+//                 </div>
+//                 <div className="b">
+
+//                 </div>
+//             </div>
+
+//         );
+//     }
+
+// }
+const MyComponent = () => {
+
+    const myIn4 = ["1", "2", "3", "4", "5", "6", "7", "8"]
+
+    const [listUsers, setlistUsers] = useState(
+        [
             {
                 id: 1, name: 'John', age: '16',
 
@@ -26,60 +102,58 @@ class MyComponent extends React.Component {
 
             }
         ]
-    }
+    )
 
-    handleAddnewUser = (objUser) => {
+
+    const handleAddnewUser = (objUser) => {
         // alert('Add new user')
         console.log(objUser)
-        this.setState({ listUsers: [objUser, ...this.state.listUsers] })
+        setlistUsers([objUser, ...listUsers])
     }
-    // handleDeleteUser = (userId) => {
+    // const      handleDeleteUser = (userId) => {
     //     const listUserClone = this.state.listUsers.filter((item) => item.id !== userId);
     //     this.setState({
     //         listUsers: listUserClone
     //     });
     // }
-    handleDeleteUser = (userId) => {
-        const listUserClone = [...this.state.listUsers]
+    const handleDeleteUser = (userId) => {
+        const listUserClone = [...listUsers]
         let cc = []
         cc = listUserClone.filter((item) => {
             return item.id !== userId
         })
-        this.setState(({
-            listUsers: cc
-        }))
+        setlistUsers(
+            cc
+        )
     }
-    render() {
-        const myIn4 = ["1", "2", "3", "4", "5", "6", "7", "8"]
+    return (
+        <div>
 
-        return (
-            <div>
+            <div className="a">
 
-                <div className="a">
+                <AddUserInForm
+                    handleAddnewUser={ handleAddnewUser}
 
-                    <AddUserInForm
-                        handleAddnewUser={this.handleAddnewUser}
+                ></AddUserInForm>
+                <br />
+                <br />
 
-                    ></AddUserInForm>
-                    <br />
-                    <br />
+                <DisplayInformation
+                    name="Ngo quang Phuc"
+                    age="18"
+                    listUsers={ listUsers}
 
-                    <DisplayInformation
-                        name="Ngo quang Phuc"
-                        age="18"
-                        listUsers={this.state.listUsers}
-
-                        handleDeleteUser={this.handleDeleteUser}
-                    // truyền hàm qua props
-                    ></DisplayInformation>
-                </div>
-                <div className="b">
-
-                </div>
+                    handleDeleteUser={ handleDeleteUser}
+                // truyền hàm qua props
+                ></DisplayInformation>
             </div>
+            <div className="b">
 
-        );
-    }
+            </div>
+        </div>
+
+    );
+
 
 }
 export default MyComponent;
