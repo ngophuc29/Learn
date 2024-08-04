@@ -4,12 +4,38 @@ import "./DisplayInfor.scss"
 
 import logo from "./../logo.svg"
 class DisplayInformation extends React.Component {
-    state = {
-        hideshow:true
+    constructor(props) {
+        console.log("constructor")
+        super(props)
+
+        this.state = {
+            hideshow: true,
+            notsubmit:true
+
+        }
+    }
+    componentDidMount(){
+        setTimeout(() => {
+
+            document.title ="Hello World"
+
+        },3000)
+    }
+    componentDidUpdate(prevProps,prevState,snapshot) {
+        console.log("componentDidUpdate",this.props,this.prevProps)
+        if(this.props.listUsers !==  prevProps.listUsers){
+            if(this.props.listUsers.length >6){
+                alert("you cant push continue users")
+       
+            }
+        }
     }
     render() {
+        console.log("render")
         const { name, age, listUsers } = this.props
+
         
+
         return (
             <div className="displayin4Container">
                 <div className="">My name's {name}</div>
@@ -17,12 +43,12 @@ class DisplayInformation extends React.Component {
                 <hr />
 
                 <button className=""
-                onClick={()=>this.setState({hideshow:!this.state.hideshow})}
+                    onClick={() => this.setState({ hideshow: !this.state.hideshow })}
                 > {
-                    this.state.hideshow==true?'Ẩn':'Hiện'
-                }
-                    </button>
-        <hr/>
+                        this.state.hideshow == true ? 'Ẩn' : 'Hiện'
+                    }
+                </button>
+                <hr />
                 {listUsers.map((item) => {
                     // console.log(item )
                     return (
@@ -39,17 +65,17 @@ class DisplayInformation extends React.Component {
                         //cách 2 
                         <div>
                             {
-                                this.state.hideshow && 
-                                <div key={item.id} className={item.age > 18 ? 'red' : 'green' }>
-                            <div className="">My id's {item.id}</div>
+                                this.state.hideshow &&
+                                <div key={item.id} className={item.age > 18 ? 'red' : 'green'}>
+                                    <div className="">My id's {item.id}</div>
 
-                            <div className="">My name's {item.name}</div>
-                            <div className="">My age's {item.age}</div>
-                            <button
-                            onClick={()=>this.props.handleDeleteUser(item.id)}
-                            >Delete</button>
-                            <hr />
-                        </div>
+                                    <div className="">My name's {item.name}</div>
+                                    <div className="">My age's {item.age}</div>
+                                    <button
+                                        onClick={() => this.props.handleDeleteUser(item.id)}
+                                    >Delete</button>
+                                    <hr />
+                                </div>
                             }
                         </div>
 
