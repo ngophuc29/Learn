@@ -1,93 +1,152 @@
-import React from "react";
+import React, { useState } from "react";
 import "../App.scss"
 import "./DisplayInfor.scss"
 
 import logo from "./../logo.svg"
-class DisplayInformation extends React.Component {
-    constructor(props) {
-        console.log("constructor")
-        super(props)
+// class DisplayInformation extends React.Component {
+//     // constructor(props) {
+//     //     console.log("constructor")
+//     //     super(props)
 
-        this.state = {
-            hideshow: true,
-            notsubmit:true
+        
+//     // }
+//     state = {
+//         hideshow: true,
+//         notsubmit:true
 
-        }
-    }
-    componentDidMount(){
-        setTimeout(() => {
+//     }
+//     // componentDidMount(){
+//     //     setTimeout(() => {
 
-            document.title ="Hello World"
+//     //         document.title ="Hello World"
 
-        },3000)
-    }
-    componentDidUpdate(prevProps,prevState,snapshot) {
-        console.log("componentDidUpdate",this.props,this.prevProps)
-        if(this.props.listUsers !==  prevProps.listUsers){
-            if(this.props.listUsers.length >6){
-                alert("you cant push continue users")
+//     //     },3000)
+//     // }
+//     // componentDidUpdate(prevProps,prevState,snapshot) {
+//     //     console.log("componentDidUpdate",this.props,this.prevProps)
+//     //     if(this.props.listUsers !==  prevProps.listUsers){
+//     //         if(this.props.listUsers.length >6){
+//     //             alert("you cant push continue users")
        
-            }
-        }
-    }
-    render() {
-        console.log("render")
-        const { name, age, listUsers } = this.props
+//     //         }
+//     //     }
+//     // }
+//     render() {
+//         console.log("render")
+//         const { name, age, listUsers } = this.props
 
         
 
-        return (
-            <div className="displayin4Container">
-                <div className="">My name's {name}</div>
-                <div className="">My age's {age}</div>
-                <hr />
+//         return (
+//             <div className="displayin4Container">
+//                 <div className="">My name's {name}</div>
+//                 <div className="">My age's {age}</div>
+//                 <hr />
 
-                <button className=""
-                    onClick={() => this.setState({ hideshow: !this.state.hideshow })}
-                > {
-                        this.state.hideshow == true ? 'Ẩn' : 'Hiện'
-                    }
-                </button>
-                <hr />
-                {listUsers.map((item) => {
-                    // console.log(item )
-                    return (
+//                 <button className=""
+//                     onClick={() => this.setState({ hideshow: !this.state.hideshow })}
+//                 > {
+//                         this.state.hideshow == true ? 'Ẩn' : 'Hiện'
+//                     }
+//                 </button>
+//                 <hr />
+//                 {listUsers.map((item) => {
+//                     // console.log(item )
+//                     return (
 
 
-                        //show hide button 
-                        // cách 1
-                        // <div key={item.id} className={item.age > 18 ? 'red' : 'green',this.state.hideshow==true?'show':'hide'}>
-                        //     <div className="">My name's {item.name}</div>
-                        //     <div className="">My age's {item.age}</div>
-                        //     <hr />
-                        // </div>
+//                         //show hide button 
+//                         // cách 1
+//                         // <div key={item.id} className={item.age > 18 ? 'red' : 'green',this.state.hideshow==true?'show':'hide'}>
+//                         //     <div className="">My name's {item.name}</div>
+//                         //     <div className="">My age's {item.age}</div>
+//                         //     <hr />
+//                         // </div>
 
-                        //cách 2 
-                        <div>
-                            {
-                                this.state.hideshow &&
-                                <div key={item.id} className={item.age > 18 ? 'red' : 'green'}>
-                                    <div className="">My id's {item.id}</div>
+//                         //cách 2 
+//                         <div>
+//                             {
+//                                 this.state.hideshow &&
+//                                 <div key={item.id} className={item.age > 18 ? 'red' : 'green'}>
+//                                     <div className="">My id's {item.id}</div>
 
-                                    <div className="">My name's {item.name}</div>
-                                    <div className="">My age's {item.age}</div>
-                                    <button
-                                        onClick={() => this.props.handleDeleteUser(item.id)}
-                                    >Delete</button>
-                                    <hr />
-                                </div>
+//                                     <div className="">My name's {item.name}</div>
+//                                     <div className="">My age's {item.age}</div>
+//                                     <button
+//                                         onClick={() => this.props.handleDeleteUser(item.id)}
+//                                     >Delete</button>
+//                                     <hr />
+//                                 </div>
+//                             }
+//                         </div>
+
+//                     )
+//                 })}
+
+
+//                 {/* <img src={logo}/> */}
+//             </div>
+//         )
+//     }
+
+// }
+const DisplayInformation=(props) => {
+    const { name, age, listUsers } =  props
+    
+        const [hideshow,sethideshow]=useState(true)
+                
+        
+                return (
+                    <div className="displayin4Container">
+                        <div className="">My name's {name}</div>
+                        <div className="">My age's {age}</div>
+                        <hr />
+        
+                        <button className=""
+                            onClick={() => sethideshow( !this.state.hideshow  )}
+                        > {
+                                 hideshow == true ? 'Ẩn' : 'Hiện'
                             }
-                        </div>
-
-                    )
-                })}
-
-
-                {/* <img src={logo}/> */}
-            </div>
-        )
-    }
-
+                        </button>
+                        <hr />
+                        {listUsers.map((item) => {
+                            // console.log(item )
+                            return (
+        
+        
+                                //show hide button 
+                                // cách 1
+                                // <div key={item.id} className={item.age > 18 ? 'red' : 'green',this.state.hideshow==true?'show':'hide'}>
+                                //     <div className="">My name's {item.name}</div>
+                                //     <div className="">My age's {item.age}</div>
+                                //     <hr />
+                                // </div>
+        
+                                //cách 2 
+                                <div>
+                                    {
+                                         hideshow &&
+                                        <div key={item.id} className={item.age > 18 ? 'red' : 'green'}>
+                                            <div className="">My id's {item.id}</div>
+        
+                                            <div className="">My name's {item.name}</div>
+                                            <div className="">My age's {item.age}</div>
+                                            <button
+                                                onClick={() =>  props.handleDeleteUser(item.id)}
+                                            >Delete</button>
+                                            <hr />
+                                        </div>
+                                    }
+                                </div>
+        
+                            )
+                        })}
+        
+        
+                        {/* <img src={logo}/> */}
+                    </div>
+                )
+             
+        
 }
-
 export default DisplayInformation
