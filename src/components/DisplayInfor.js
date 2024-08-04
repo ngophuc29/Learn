@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../App.scss"
 import "./DisplayInfor.scss"
 
@@ -95,7 +95,26 @@ const DisplayInformation=(props) => {
     
         const [hideshow,sethideshow]=useState(true)
                 
+        //useEffect nay no se chay khi ma co thay doi tren web
+    // dau [] o cuoi cung co tac dung xac dinh so lan ma 
+    // useEffect no chay , neu de trong no chi chay 1 lan
+    // ,mot cach khac neu truyen 1 bien voa trong cai []
+    //thi no se theo doi su thay doi cua bien so do
+        useEffect(
+            ()=>{
+            setTimeout(() => {
+                 document.title="garffdsfds"
+            }, 2000);
+
+            // gio theo doi neu listUser ma no nho hon hoac bang 0
+            // thi no se thong bao ra man hinh
+            // truoc tien phai truyen bien do vao trong dau []
+            if(listUsers.length===0){
+                alert("m xoa het user r do ")
+            }
+        },[listUsers]
         
+    )
                 return (
                     <div className="displayin4Container">
                         <div className="">My name's {name}</div>
