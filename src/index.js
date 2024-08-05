@@ -11,6 +11,7 @@ import { BrowserRouter,
   Routes } from "react-router-dom"
 import User from './components/User/User';
 import Admin from './components/Admin/Admin';
+import HomePage from './components/Home/HomePage';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -19,6 +20,7 @@ root.render(
     <BrowserRouter>
        <Routes>
           <Route path='/' element={<App></App>}>
+          <Route  index element={<HomePage></HomePage>}></Route>
           
           <Route path='/user' element={<User></User>}></Route>
 
