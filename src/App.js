@@ -6,7 +6,7 @@ import { increaseCounter, decreaseCounter } from './redux/action/counterAction';
 
 import React from 'react';
 import Header from './components/Header/Header';
-import { Link } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 // class App extends React.Component {
 
 //   render() {
@@ -31,10 +31,23 @@ const App = () => {
 
 
     <div className="app-container">
-      <Header></Header>
+      <div className='header-container'>
+        <Header></Header>
+      </div>
+
+      <div className='main-container'>
+        <div className='sidenav-container'>
+
+        </div>
+        <div className='app-content'>
+            <Outlet></Outlet>
+        </div>
+      </div>
 
 
-      <div>
+
+
+      {/* <div>
         test link
         <div>
           <button type="button">
@@ -49,7 +62,7 @@ const App = () => {
           </button>
 
         </div>
-      </div>
+      </div> */}
 
     </div>
   );
