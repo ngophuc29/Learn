@@ -2,7 +2,7 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import { Link } from "react-router-dom";
+import {NavLink, Link } from "react-router-dom";
 
 const Header = () => {
     return (
@@ -16,10 +16,10 @@ const Header = () => {
                         <Nav.Link href="/user">User</Nav.Link>
                         <Nav.Link href="/admin">Admin</Nav.Link> */}
 
-                        <Link to="/" className='nav-link'>Home</Link>
-                        <Link to="/user"  className='nav-link'>User</Link>
+                        <NavLink to="/" className='nav-link'>Home</NavLink>
+                        <NavLink to="/user"  className='nav-link'>User</NavLink>
 
-                        <Link to="/admin"  className='nav-link'>Admin</Link>
+                        <NavLink to="/admin"  className='nav-link'>Admin</NavLink>
 
                     </Nav>
                     <Nav>
