@@ -7,32 +7,97 @@ body {
   -moz-osx-font-smoothing: grayscale;
   padding: 0;
 }
+@media (min-width: 1400px) {
+  .container, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+      max-width: 1380px !important;
+  }
+}
 
-.red{
+.red {
   color: red;
 }
-.green{
+
+.green {
   color: green;
 }
 
 .show {
   display: block;
 }
+
 .hide {
   display: none;
 }
 
 .app-container {
   .header-container {
-    .navbar-nav {
+    .btn-login {
+      border-radius: 5px;
+      margin-right: 15px;
+      padding: 0 10px;
+      border: 1px solid #535353;
+      background-color: none;
+      height: 40px;
+    }
+
+    .btn-signup{
+      border-radius: 5px;
+      padding: 0 15px;
+      background-color: rgb(30,30,30);
+      color: white;
+      border: none;
+      height: 40px;
+
+      &:hover{
+        background-color: red;
+      }
+    }
+    
+    .navbar {
       z-index: 10;
-      opacity: 0.6;
-      .nav-link{
-        &.active{
+      background-color: rgba(0, 0, 0, 0) !important;
+
+      padding-top: 20px;
+      .nav-link {
+        &.active {
           color: red;
         }
       }
-     
+
+    }
+  }
+
+  .homepage-container {
+    .homepage-content{
+      padding: 100px;
+      position: relative;
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      .title1{
+        font-size: 45px;
+        font-weight: 600;
+
+      }
+      .title2{
+        font-size: 35px;
+
+      }
+      .title3{
+        button{
+          border-radius: 5px;
+          padding: 0 15px;
+          background-color: rgb(30,30,30);
+          color: white;
+          border: none;
+          height: 40px;
+          &:hover{
+            background-color: red;
+          }
+        }
+
+      }
     }
   }
 }
