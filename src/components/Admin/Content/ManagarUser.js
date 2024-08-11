@@ -1,24 +1,24 @@
 import ModelCreateUser from "./ModelCreateUser";
-
+import "./ManageUser.scss"
 
 const ManagerUser = () => {
-    return (<div classNameName="manager-user-container">
+    return (<div className="manager-user-container">
 
-        <div classNameName="title">
+        <div className="title">
 
             Manage User
         </div>
-        <div classNameName="user-content"
+        <div className="user-content"
         >
 
             <div>
 
-                <button type="button" classNameName="">Add New User</button>
+                <button type="button" className="">Add New User</button>
             </div>
             <div>
                 Tablde User
-                <ModelCreateUser></ModelCreateUser>
             </div>
+                <ModelCreateUser></ModelCreateUser>
         </div>
     </div>);
 }
