@@ -14,6 +14,8 @@ import {
 import User from './components/User/User';
 import Admin from './components/Admin/Admin';
 import HomePage from './components/Home/HomePage';
+import ManagerUser from './components/Admin/Content/ManagarUser';
+import DashBoard from './components/Admin/Content/DashBoard';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -28,7 +30,12 @@ root.render(
 
 
         </Route>
-          <Route path='/admin' element={<Admin></Admin>}></Route>
+        <Route path='/admin' element={<Admin></Admin>}>
+          <Route index element={<DashBoard></DashBoard>}></Route>
+
+          <Route path='managerUser' element={<ManagerUser></ManagerUser>} />
+
+        </Route>
 
       </Routes>
     </BrowserRouter>

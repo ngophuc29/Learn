@@ -16,6 +16,7 @@ import { MdDashboard } from "react-icons/md";
 
 import { MdConnectWithoutContact } from "react-icons/md";
 import sidebarBg from '../../assests/bg2.jpg';
+import { Link } from 'react-router-dom';
 const SideBar = (props) => {
     const { image, collapsed, toggled, handleToggleSidebar }=props
     return (
@@ -54,6 +55,7 @@ const SideBar = (props) => {
                             //  suffix={<span className="badge red">New</span>}
                         >
                             DashBoard
+                            <Link to="/admin"></Link>
                         </MenuItem>
                         <MenuItem icon={<FaGem />}>  Component</MenuItem>
                     </Menu>
@@ -63,7 +65,10 @@ const SideBar = (props) => {
                             title={"Features"}
                             icon={<FaRegLaughWink />}
                         >
-                            <MenuItem> Quản lý User</MenuItem>
+                            <MenuItem> Quản lý User
+                            <Link to="/admin/managerUser"></Link>
+                            
+                            </MenuItem>
                             <MenuItem> Quản lý Quiz </MenuItem>
                             <MenuItem> Quản lý câu hỏi</MenuItem>
                         </SubMenu>
