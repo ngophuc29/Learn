@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { FaPlusCircle } from "react-icons/fa";
+import {   toast } from 'react-toastify';
 const ModelCreateUser = (props) => {
     const { show, setShow } = props;
     // const [show, setShow] = useState(false);
@@ -37,7 +38,7 @@ const ModelCreateUser = (props) => {
         if (e.target && e.target.files && e.target.files[0]) {
 
             setPriviewImage(URL.createObjectURL(e.target.files[0]))
-            setimage(e.target.files)
+            setimage(e.target.files[0])
             console.log("upload", e.target.files[0])
         }
         else {
@@ -45,8 +46,29 @@ const ModelCreateUser = (props) => {
 
         }
     }
-
+    const validateEmail = (email) => {
+        return String(email)
+          .toLowerCase()
+          .match(
+            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+          );
+      };
     const HandelsubmitCreateUser = async() => {
+
+        //validate
+       
+        const isValid=validateEmail(email)
+
+        if(!isValid){
+            // alert("Please enter a valid email")
+            toast.error("Please enter a valid email")
+            return;
+        }
+        if(!password){
+            toast.error("Please enter a valid Password")
+            return;
+        }
+
         //tạo object de call api
         // let date = {
         //     email: email,
@@ -67,7 +89,16 @@ const ModelCreateUser = (props) => {
          
 
         let res= await axios.post('http://localhost:8081/api/v1/participant', data)
-        console.log(">> check respone :  ",res)
+        console.log(">> check respone :  ",res.data)
+
+        if(res.data && res.data.EC===0){
+            toast.success(res.data.EM)
+            handleClose()
+        }
+        if(res.data && res.data.EC!==0){
+            toast.error(res.data.EM)
+            
+        }
     }
     return (
         <>
