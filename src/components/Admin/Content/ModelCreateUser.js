@@ -4,6 +4,8 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { FaPlusCircle } from "react-icons/fa";
 import {   toast } from 'react-toastify';
+
+import { PostCreatUser } from '../../../services/apiservice';
 const ModelCreateUser = (props) => {
     const { show, setShow } = props;
     // const [show, setShow] = useState(false);
@@ -59,11 +61,11 @@ const ModelCreateUser = (props) => {
        
         const isValid=validateEmail(email)
 
-        if(!isValid){
-            // alert("Please enter a valid email")
-            toast.error("Please enter a valid email")
-            return;
-        }
+        // if(!isValid){
+        //     // alert("Please enter a valid email")
+        //     toast.error("Please enter a valid email")
+        //     return;
+        // }
         if(!password){
             toast.error("Please enter a valid Password")
             return;
@@ -78,27 +80,42 @@ const ModelCreateUser = (props) => {
         //     userImage: image,
 
         // }
-        const data = new FormData();
-        data.append('email', email);
-        data.append('password', password);
-        data.append('username', username);
-        data.append('role', role);
-        data.append('userImage', image);
+        // const data = new FormData();
+        // data.append('email', email);
+        // data.append('password', password);
+        // data.append('username', username);
+        // data.append('role', role);
+        // data.append('userImage', image);
 
 
          
+        // chưa dùng intercepter để can thiệp middelware
+            // let res= await PostCreatUser(email, password,username,role,image)
+            // console.log(">> check respone từ modal :  ",res.data )
 
-        let res= await axios.post('http://localhost:8081/api/v1/participant', data)
-        console.log(">> check respone :  ",res.data)
+            // if(res.data && res.data.EC===0){
+            //     toast.success(res.data.EM)
+            //     handleClose()
+            // }
+            // if(res.data && res.data.EC!==0){
+            //     toast.error(res.data.EM)
+                
+            // }
 
-        if(res.data && res.data.EC===0){
-            toast.success(res.data.EM)
+   // sau khi dùng intercepter
+   let data= await PostCreatUser(email, password,username,role,image)
+        console.log(">> check respone từ modal :  ",data  )
+
+        if( data &&  data.EC===0){
+            toast.success( data.EM)
             handleClose()
         }
-        if(res.data && res.data.EC!==0){
-            toast.error(res.data.EM)
+        if( data &&  data.EC!==0){
+            toast.error( data.EM)
             
         }
+
+
     }
     return (
         <>
