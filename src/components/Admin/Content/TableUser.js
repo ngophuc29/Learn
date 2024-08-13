@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { getAllUser } from "../../../services/apiservice";
 const TableUser = (props) => {
-    const [listUser, setListUser] = useState([
+    // const [listUser, setListUser] = useState([
 
-    ])
+    // ])
+    const {listUser}=props
 
 
     //dùng như này cũng dc nhưng k nên vì nó sẽ giảm hiệu suất đi
@@ -18,21 +19,21 @@ const TableUser = (props) => {
 
 
     // ==> nên dùng như này 
-    useEffect(  ()=>{
+    // useEffect(  ()=>{
 
 
-        getDataUser()
+    //     getDataUser()
          
-    },[])
-    const getDataUser= async ()=>{
+    // },[])
+    // const getDataUser= async ()=>{
 
 
-        let res= await getAllUser()
-        console.log(res)
-         if(res.EC===0){
-            setListUser(res.DT)
-         }
-    }
+    //     let res= await getAllUser()
+    //     console.log(res)
+    //      if(res.EC===0){
+    //         setListUser(res.DT)
+    //      }
+    // }
     return (
         <>
             <table className="table table-hover table-border ed">
