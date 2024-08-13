@@ -2,6 +2,7 @@ import ModelCreateUser from "./ModelCreateUser";
 import "./ManageUser.scss"
 import { FaPlusCircle } from "react-icons/fa";
 import { useState } from "react";
+import TableUser from "./TableUser";
 const ManagerUser = () => {
 
     const [showModelCreateUser, setShowModelCreateUser]=useState(false)
@@ -19,7 +20,7 @@ const ManagerUser = () => {
                 <button type="button" className=" btn btn-primary" onClick={()=>setShowModelCreateUser(!showModelCreateUser)}> <FaPlusCircle/> Add New User </button>
             </div>
             <div className="table-users-container">
-                Tablde User
+                <TableUser></TableUser>
             </div>
                 {/* <ModelCreateUser showModelCreateUser={showModelCreateUser} setShowModelCreateUser={setShowModelCreateUser}></ModelCreateUser> */}
                 <ModelCreateUser show={showModelCreateUser} setShow={setShowModelCreateUser}></ModelCreateUser>
