@@ -5,9 +5,9 @@ import Modal from 'react-bootstrap/Modal';
 import { FaPlusCircle } from "react-icons/fa";
 import {   toast } from 'react-toastify';
 import _ from 'lodash';
-import { PostCreatUser } from '../../../services/apiservice';
+import { PutUpdateUser } from '../../../services/apiservice';
 const ModelUpdateUser = (props) => {
-    const { show, setShow,dataUpdateUser } = props;
+    const { show, setShow,dataUpdateUser,resetUpdateDate } = props;
     // const [show, setShow] = useState(false);
 
     const handleClose = () => {
@@ -18,6 +18,7 @@ const ModelUpdateUser = (props) => {
         setimage("");
         setrole("");
         setPriviewImage("");
+        resetUpdateDate()
     };
     const handleShow = () => setShow(true);
 
@@ -61,47 +62,9 @@ const ModelUpdateUser = (props) => {
 
         }
     }
-    const validateEmail = (email) => {
-        return String(email)
-          .toLowerCase()
-          .match(
-            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-          );
-      };
+     
     const HandelsubmitCreateUser = async() => {
 
-        //validate
-       
-        const isValid=validateEmail(email)
-
-        // if(!isValid){
-        //     // alert("Please enter a valid email")
-        //     toast.error("Please enter a valid email")
-        //     return;
-        // }
-        if(!password){
-            toast.error("Please enter a valid Password")
-            return;
-        }
-
-        //tạo object de call api
-        // let date = {
-        //     email: email,
-        //     password: password,
-        //     username: username,
-        //     role: role,
-        //     userImage: image,
-
-        // }
-        // const data = new FormData();
-        // data.append('email', email);
-        // data.append('password', password);
-        // data.append('username', username);
-        // data.append('role', role);
-        // data.append('userImage', image);
-
-
-         
         // chưa dùng intercepter để can thiệp middelware
             // let res= await PostCreatUser(email, password,username,role,image)
             // console.log(">> check respone từ modal :  ",res.data )
@@ -116,7 +79,7 @@ const ModelUpdateUser = (props) => {
             // }
 
    // sau khi dùng intercepter
-   let data= await PostCreatUser(email, password,username,role,image)
+   let data= await PutUpdateUser( dataUpdateUser.id,username,role,image)
         console.log(">> check respone từ modal :  ",data  )
 
         if( data &&  data.EC===0){

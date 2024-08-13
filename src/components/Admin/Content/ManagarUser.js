@@ -6,6 +6,7 @@ import { getAllUser } from "../../../services/apiservice";
 import { useEffect, useState } from "react";
 import TableUser from "./TableUser";
 import ModelUpdateUser from "./ModelUpdateUser";
+import { set } from "lodash";
 const ManagerUser = () => {
 
     const [showModelCreateUser, setShowModelCreateUser]=useState(false)
@@ -37,6 +38,10 @@ const ManagerUser = () => {
         setDataUpdateUser(user)
         console.log(user)
     }
+
+    const resetUpdateDate=()=>{
+        setDataUpdateUser()
+    }
     return (<div className="manager-user-container">
 
         <div className="title">
@@ -60,6 +65,8 @@ const ManagerUser = () => {
 
                 //dataUserUpdate
                 dataUpdateUser = {dataUpdateUser}
+                getDataUser={getDataUser}
+                resetUpdateDate={resetUpdateDate}
                 ></ModelUpdateUser>
         </div>
     </div>);

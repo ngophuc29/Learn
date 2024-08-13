@@ -8,11 +8,22 @@ const PostCreatUser = async (email, password, username, role, image) => {
    data.append('role', role);
    data.append('userImage', image);
 
-   return await axios.post('http://localhost:8081/api/v1/participant', data)
+   return await axios.post('/api/v1/participant', data)
 }
 
 const getAllUser = () => {
 
-   return  axios.get('http://localhost:8081/api/v1/participant/all' )
+   return  axios.get('api/v1/participant/all' )
 }
-export { PostCreatUser ,getAllUser }
+const PutUpdateUser = async ( id, username, role, image) => {
+   const data = new FormData();
+   data.append('id', id);
+   
+   data.append('username', username);
+   data.append('role', role);
+   data.append('userImage', image);
+
+   return   axios.put('/api/v1/participant', data)
+}
+export { PostCreatUser ,getAllUser,  PutUpdateUser }
+ 
