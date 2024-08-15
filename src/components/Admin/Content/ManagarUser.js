@@ -114,6 +114,8 @@ const ManagerUser = () => {
                 setShow={setshowModelDeleteUser}
                 handelCloseDeleteModel={handelDeleteModel}
                 dataDeleteUser={dataDeleteUser}
+
+                getDataUser={getDataUser}
                 ></ModalDeleteUser>
         </div>
     </div>);

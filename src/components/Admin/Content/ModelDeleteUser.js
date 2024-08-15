@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-
+import { DeleteUser } from '../../../services/apiservice';
+import {   toast } from 'react-toastify';
 const ModalDeleteUser=(props)=> {
   // const [show, setShow] = useState(false);
   const {show, setShow,dataDeleteUser} = props
@@ -9,8 +10,18 @@ const ModalDeleteUser=(props)=> {
   const handleShow = () => setShow(true);
 
 
-  const handelConfirmDelete = () =>{
-    
+  const handelConfirmDelete = async () =>{
+    let data= await DeleteUser(dataDeleteUser.id )
+    console.log(">> check respone từ modal :  ",data  )
+    if( data &&  data.EC===0){
+      toast.success( data.EM)
+      handleClose()
+      await props.getDataUser();
+  }
+  if( data &&  data.EC!==0){
+      toast.error( data.EM)
+      
+  }
   }
 
   return (
@@ -29,7 +40,7 @@ const ModalDeleteUser=(props)=> {
           <Button variant="secondary" onClick={handleClose}>
             Cancel
           </Button>
-          <Button variant="primary" onClick={handleClose}>
+          <Button variant="primary" onClick={()=>handelConfirmDelete()}>
             Confirm
           </Button>
         </Modal.Footer>

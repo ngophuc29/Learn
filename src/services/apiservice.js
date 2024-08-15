@@ -13,17 +13,21 @@ const PostCreatUser = async (email, password, username, role, image) => {
 
 const getAllUser = () => {
 
-   return  axios.get('api/v1/participant/all' )
+   return axios.get('api/v1/participant/all')
 }
-const PutUpdateUser = async ( id, username, role, image) => {
+const PutUpdateUser = async (id, username, role, image) => {
    const data = new FormData();
    data.append('id', id);
-   
+
    data.append('username', username);
    data.append('role', role);
    data.append('userImage', image);
 
-   return   axios.put('/api/v1/participant', data)
+   return axios.put('/api/v1/participant', data)
 }
-export { PostCreatUser ,getAllUser,  PutUpdateUser }
- 
+
+const DeleteUser = (userId) => {
+
+   return axios.delete('api/v1/participant', { data: { id: userId } })
+}
+export { PostCreatUser, getAllUser, PutUpdateUser, DeleteUser }
