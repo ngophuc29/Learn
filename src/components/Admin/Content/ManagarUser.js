@@ -8,15 +8,19 @@ import TableUser from "./TableUser";
 import ModelUpdateUser from "./ModelUpdateUser";
 import { set } from "lodash";
 import ModelViewUser from "./ModalViewUser";
+import ModalDeleteUser from "./ModelDeleteUser";
 const ManagerUser = () => {
 
     const [showModelCreateUser, setShowModelCreateUser]=useState(false)
     const [showModelUpdateUser, setshowModelUpdateUser]=useState(false)
     const [showModelViewUser, setshowModelViewUser]=useState(false)
 
+    const [showModelDeleteUser, setshowModelDeleteUser]=useState(false)
+
+
     const [dataUpdateUser,setDataUpdateUser]=useState({})
 
-     
+     const [dataDeleteUser,setDataDeleteUser]=useState({})
 
     const [dataViewUser,setDataViewUser]=useState({})
 
@@ -58,6 +62,12 @@ const ManagerUser = () => {
     const resetViewDate=()=>{
         setDataViewUser()
     }
+    const handelDeleteModel =(user)=>{
+        setshowModelDeleteUser(!showModelUpdateUser)
+        setDataDeleteUser(user)
+        console.log(user)
+
+    }
     return (<div className="manager-user-container">
 
         <div className="title">
@@ -72,7 +82,9 @@ const ManagerUser = () => {
                 <button type="button" className=" btn btn-primary" onClick={()=>setShowModelCreateUser(!showModelCreateUser)}> <FaPlusCircle/> Add New User </button>
             </div>
             <div className="table-users-container">
-                <TableUser listUser={listUser}  handelUpdateUser={handelUpdateUser} handelViewUser={handelViewUser} ></TableUser>
+                <TableUser listUser={listUser}  handelUpdateUser={handelUpdateUser} handelViewUser={handelViewUser}   
+                  handelCloseDeleteModel={handelDeleteModel}
+                ></TableUser>
             </div>
                 {/* <ModelCreateUser showModelCreateUser={showModelCreateUser} setShowModelCreateUser={setShowModelCreateUser}></ModelCreateUser> */}
                 <ModelCreateUser show={showModelCreateUser} setShow={setShowModelCreateUser} getDataUser={getDataUser}></ModelCreateUser>
@@ -95,6 +107,14 @@ const ManagerUser = () => {
 
                     
                 </ModelViewUser>
+
+
+                <ModalDeleteUser
+                show={showModelDeleteUser}
+                setShow={setshowModelDeleteUser}
+                handelCloseDeleteModel={handelDeleteModel}
+                dataDeleteUser={dataDeleteUser}
+                ></ModalDeleteUser>
         </div>
     </div>);
 }
