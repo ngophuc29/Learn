@@ -1,18 +1,41 @@
 import { useState } from 'react';
 import './Login.scss'
+import {postLogin} from '../../services/apiservice'
 import { set } from 'lodash';
-const Login = (props) => {
+import { useNavigate } from 'react-router-dom';
+import {   toast } from 'react-toastify';
 
+const Login = (props) => {
+const navigate=useNavigate()
     const [email,setEmail] = useState("")
     const [password,setPassword] = useState("")
 
 
-    const handleLogin=()=>{
-        alert(email+password)
+    const handleLogin= async()=>{
+
+        //validate
+
+
+        //submit API
+        let data=await postLogin(email,password)
+        console.log(data)
+
+        if( data &&  data.EC===0){
+            toast.success( data.EM)
+            
+             navigate("/")
+        }
+        if( data &&  data.EC!==0){
+            toast.error( data.EM)
+            
+        }
     }
     return (<div className="login-container ">
         <div className="header ">
-            Dont have an account yet?
+            <span> Dont have an account yet?
+
+                <button >Sign Up</button>
+            </span>
         </div>
         <div className="title col-4 mx-auto">
             Hoi Phuc di
@@ -43,6 +66,14 @@ const Login = (props) => {
                 <button className='btn-submit'
                 onClick={()=>handleLogin()}
                 >Login</button>
+            </div>
+
+            <div>
+                <span style={{cursor:"pointer"}} className='text-center' onClick={()=> navigate("/")}>
+                    &#60;
+                    &#60; 
+                    Go to Home Page
+                </span>
             </div>
         </div>
 
