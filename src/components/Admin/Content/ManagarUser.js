@@ -29,6 +29,8 @@ const ManagerUser = () => {
     const [listUser, setListUser] = useState([
 
     ])
+
+    const [currentPage,setCurrentPage] = useState(1)
     useEffect(  ()=>{
 
 
@@ -46,7 +48,7 @@ const ManagerUser = () => {
          }
     }
 
-    const limitUser=6
+    const limitUser=3
     const getDataUserWithPaginate= async (page)=>{
 
 
@@ -106,10 +108,20 @@ const ManagerUser = () => {
                 handelCloseDeleteModel={handelDeleteModel}
                 getDataUserWithPaginate={getDataUserWithPaginate}
                 pageCount={pageCount}
+
+                currentPage={currentPage}
+                setCurrentPage={setCurrentPage}
                 ></TableUserPaginate>
             </div>
                 {/* <ModelCreateUser showModelCreateUser={showModelCreateUser} setShowModelCreateUser={setShowModelCreateUser}></ModelCreateUser> */}
-                <ModelCreateUser show={showModelCreateUser} setShow={setShowModelCreateUser} getDataUser={getDataUser}></ModelCreateUser>
+                <ModelCreateUser 
+                show={showModelCreateUser} 
+                setShow={setShowModelCreateUser}
+                 getDataUser={getDataUser}
+                getDataUserWithPaginate={getDataUserWithPaginate}
+                currentPage={currentPage}
+                setCurrentPage={setCurrentPage}
+                 ></ModelCreateUser>
                 <ModelUpdateUser 
                 show ={showModelUpdateUser} setShow={setshowModelUpdateUser} 
 
@@ -117,6 +129,9 @@ const ManagerUser = () => {
                 dataUpdateUser = {dataUpdateUser}
                 getDataUser={getDataUser}
                 resetUpdateDate={resetUpdateDate}
+                getDataUserWithPaginate={getDataUserWithPaginate}
+                currentPage={currentPage}
+                setCurrentPage={setCurrentPage}
                 ></ModelUpdateUser>
 
                 <ModelViewUser
@@ -138,7 +153,9 @@ const ManagerUser = () => {
                 dataDeleteUser={dataDeleteUser}
 
                 getDataUser={getDataUser}
-              
+                getDataUserWithPaginate={getDataUserWithPaginate}
+                currentPage={currentPage}
+                setCurrentPage={setCurrentPage}
                 ></ModalDeleteUser>
         </div>
     </div>);
