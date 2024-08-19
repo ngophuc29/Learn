@@ -2,13 +2,14 @@ import ModelCreateUser from "./ModelCreateUser";
 import "./ManageUser.scss"
 import { FaPlusCircle } from "react-icons/fa";
  
-import { getAllUser } from "../../../services/apiservice";
+import { getAllUser,getAllUserWithPaginate  } from "../../../services/apiservice";
 import { useEffect, useState } from "react";
 import TableUser from "./TableUser";
 import ModelUpdateUser from "./ModelUpdateUser";
 import { set } from "lodash";
 import ModelViewUser from "./ModalViewUser";
 import ModalDeleteUser from "./ModelDeleteUser";
+import TableUserPaginate from "./TableUserPaginate";
 const ManagerUser = () => {
 
     const [showModelCreateUser, setShowModelCreateUser]=useState(false)
@@ -23,7 +24,7 @@ const ManagerUser = () => {
      const [dataDeleteUser,setDataDeleteUser]=useState({})
 
     const [dataViewUser,setDataViewUser]=useState({})
-
+    const [pageCount, setPageCount] = useState(0);
 
     const [listUser, setListUser] = useState([
 
@@ -31,7 +32,8 @@ const ManagerUser = () => {
     useEffect(  ()=>{
 
 
-        getDataUser()
+        // getDataUser()
+        getDataUserWithPaginate(1)
          
     },[])
     const getDataUser= async ()=>{
@@ -44,6 +46,17 @@ const ManagerUser = () => {
          }
     }
 
+    const limitUser=6
+    const getDataUserWithPaginate= async (page)=>{
+
+
+        let res= await getAllUserWithPaginate (page,limitUser)
+        console.log(res)
+         if(res.EC===0){
+            setListUser(res.DT.users)
+            setPageCount(res.DT.totalPages)
+         }
+    }
     const handelUpdateUser =(user)=>{
         setshowModelUpdateUser(true)
         setDataUpdateUser(user)
@@ -82,9 +95,18 @@ const ManagerUser = () => {
                 <button type="button" className=" btn btn-primary" onClick={()=>setShowModelCreateUser(!showModelCreateUser)}> <FaPlusCircle/> Add New User </button>
             </div>
             <div className="table-users-container">
-                <TableUser listUser={listUser}  handelUpdateUser={handelUpdateUser} handelViewUser={handelViewUser}   
+                {/* <TableUser listUser={listUser}  handelUpdateUser={handelUpdateUser} handelViewUser={handelViewUser}   
                   handelCloseDeleteModel={handelDeleteModel}
-                ></TableUser>
+                ></TableUser> */}
+
+                <TableUserPaginate 
+                listUser={listUser}  
+                handelUpdateUser={handelUpdateUser} 
+                handelViewUser={handelViewUser}   
+                handelCloseDeleteModel={handelDeleteModel}
+                getDataUserWithPaginate={getDataUserWithPaginate}
+                pageCount={pageCount}
+                ></TableUserPaginate>
             </div>
                 {/* <ModelCreateUser showModelCreateUser={showModelCreateUser} setShowModelCreateUser={setShowModelCreateUser}></ModelCreateUser> */}
                 <ModelCreateUser show={showModelCreateUser} setShow={setShowModelCreateUser} getDataUser={getDataUser}></ModelCreateUser>
@@ -116,6 +138,7 @@ const ManagerUser = () => {
                 dataDeleteUser={dataDeleteUser}
 
                 getDataUser={getDataUser}
+              
                 ></ModalDeleteUser>
         </div>
     </div>);
