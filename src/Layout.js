@@ -13,7 +13,8 @@ import DashBoard from './components/Admin/Content/DashBoard';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Login from './components/Auth/Login'; const Layout = (props) => {
+import Login from './components/Auth/Login';import Register from "./components/Auth/Register";
+ const Layout = (props) => {
     return (
         <>
             <Routes>
@@ -31,6 +32,8 @@ import Login from './components/Auth/Login'; const Layout = (props) => {
 
                 </Route>
                 <Route path='/login' element={<Login></Login>}></Route>
+                <Route path='/register' element={<Register></Register>}></Route>
+
 
 
             </Routes>

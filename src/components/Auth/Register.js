@@ -1,15 +1,16 @@
 import { useState } from 'react';
 import './Login.scss'
-import { postLogin } from '../../services/apiservice'
+import { postLogin, postSignUp } from '../../services/apiservice'
 import { set } from 'lodash';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-const Login = (props) => {
+const Register = (props) => {
     const navigate = useNavigate()
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
-
+    const [userName, setUserName] = useState("")
+    const [hidePassword, setHidePassword] = useState(false)
     const validateEmail = (email) => {
         return String(email)
             .toLowerCase()
@@ -18,11 +19,9 @@ const Login = (props) => {
             );
     };
 
+    const handleSignUp = async () => {
 
-
-
-
-    const handleLogin = async () => {
+        //validate
 
         //validate
         const isValid = validateEmail(email)
@@ -34,13 +33,13 @@ const Login = (props) => {
             return;
         }
         //submit API
-        let data = await postLogin(email, password)
+        let data = await postSignUp(email, password, userName)
         console.log(data)
 
         if (data && data.EC === 0) {
             toast.success(data.EM)
 
-            navigate("/")
+            navigate("/login")
         }
         if (data && data.EC !== 0) {
             toast.error(data.EM)
@@ -49,16 +48,13 @@ const Login = (props) => {
     }
     return (<div className="login-container ">
         <div className="header ">
-            <span> Dont have an account yet?
-
-                <button onClick={() => navigate("/register")}>Sign Up</button>
-            </span>
+            co acc r thi login nha <button onClick={() => navigate('/login')}> Login</button>
         </div>
         <div className="title col-4 mx-auto">
             Hoi Phuc di
         </div>
         <div className="welcome col-4 mx-auto">
-            Hello, who's this
+            Đăng Ký
         </div>
         <div className="content-form col-4 mx-auto">
             <div className="form-group">
@@ -71,18 +67,28 @@ const Login = (props) => {
             </div>
             <div className="form-group">
                 <label for="">Password</label>
-                <input type="password" name="" id="" className="form-control" placeholder="" aria-describedby="helpId"
+                <input type={hidePassword ? "text" : 'password'} name="" id="" className="form-control" placeholder="" aria-describedby="helpId"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                 />
 
+                <button onClick={() => setHidePassword(!hidePassword)}> Xem mk</button>
             </div>
-            <span>Forgot password?</span>
+
+            <div className="form-group">
+                <label for="">User Name</label>
+                <input type="text" name="" id="" className="form-control" placeholder="" aria-describedby="helpId"
+                    value={userName}
+                    onChange={(e) => setUserName(e.target.value)}
+                />
+
+            </div>
+
 
             <div>
                 <button className='btn-submit'
-                    onClick={() => handleLogin()}
-                >Login</button>
+                    onClick={() => handleSignUp()}
+                >Sign Up</button>
             </div>
 
             <div>
@@ -97,4 +103,4 @@ const Login = (props) => {
     </div>);
 }
 
-export default Login;
+export default Register;
