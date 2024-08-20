@@ -4,11 +4,17 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { NavLink, Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from "react-redux";
+
 const Header = () => {
-    let navigate=useNavigate()
-    const handleClick=()=>{
-       navigate("/login")
+    let navigate = useNavigate()
+    const handleClick = () => {
+        navigate("/login")
     }
+
+    const account = useSelector(state => state.user.account)
+    const isauthenticated = useSelector(state => state.user.isauthenticated)
+
     return (
         <Navbar expand="lg" className="bg-body-tertiary">
             <Container>
@@ -29,16 +35,28 @@ const Header = () => {
 
                     </Nav>
                     <Nav>
-                        <button className='btn-login' onClick={()=>handleClick()}> Login </button>
-                        <button className='btn-signup' onClick={()=>  navigate("/register")}>Sign up</button>
-                        {/* <NavDropdown title="Settings" id="basic-nav-dropdown">
+
+                        {isauthenticated ? <NavDropdown title="Settings" id="basic-nav-dropdown">
                             <NavDropdown.Item  >Login</NavDropdown.Item>
                             <NavDropdown.Item  >
                                 Logout
                             </NavDropdown.Item>
                             <NavDropdown.Item  >User Info</NavDropdown.Item>
 
-                        </NavDropdown> */}
+                        </NavDropdown>
+
+                            :
+
+
+                            <>
+
+                                <button className='btn-login' onClick={() => handleClick()}> Login </button>
+                                <button className='btn-signup' onClick={() => navigate("/register")}>Sign up</button>
+                            </>
+                        }
+
+
+
                     </Nav>
                 </Navbar.Collapse>
             </Container>
