@@ -37,7 +37,7 @@ const Header = () => {
                     <Nav>
 
                         {isauthenticated ? <NavDropdown title="Settings" id="basic-nav-dropdown">
-                            <NavDropdown.Item  >Login</NavDropdown.Item>
+                            <NavDropdown.Item  onClick={()=>handleClick()}>Login</NavDropdown.Item>
                             <NavDropdown.Item  >
                                 Logout
                             </NavDropdown.Item>
