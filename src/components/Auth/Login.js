@@ -6,14 +6,14 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
 import { doLogin } from '../../redux/action/userAction';
-
+import { FaSpinner } from "react-icons/fa";
 
 const Login = (props) => {
     const navigate = useNavigate()
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
-    const dispatch=useDispatch()
+    const dispatch = useDispatch()
 
     const validateEmail = (email) => {
         return String(email)
@@ -23,7 +23,7 @@ const Login = (props) => {
             );
     };
 
-
+    const [isLoaing,SetIsLoading]=useState(false)
 
 
 
@@ -38,19 +38,25 @@ const Login = (props) => {
             toast.error("Please enter a valid email")
             return;
         }
+        SetIsLoading(true)
+
         //submit API
         let data = await postLogin(email, password)
         console.log(data)
+ 
 
         if (data && data.EC === 0) {
             toast.success(data.EM)
+            
+            SetIsLoading(false)
 
             navigate("/")
 
-            dispatch( doLogin(data))
+            dispatch(doLogin(data))
         }
         if (data && data.EC !== 0) {
             toast.error(data.EM)
+            SetIsLoading(false)
 
         }
     }
@@ -89,7 +95,12 @@ const Login = (props) => {
             <div>
                 <button className='btn-submit'
                     onClick={() => handleLogin()}
-                >Login</button>
+                    disabled={isLoaing}
+                >
+                    {isLoaing ===true && <FaSpinner className='loaderIcon'></FaSpinner>}
+                    
+
+                    Login</button>
             </div>
 
             <div>
