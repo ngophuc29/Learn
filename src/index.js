@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom/client';
 
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
-import store from './redux/store';
+import {store,persistor} from './redux/store';
 import 'bootstrap/dist/css/bootstrap.min.css';
- 
+import { PersistGate } from 'redux-persist/integration/react'
 import '../node_modules/nprogress/nprogress.css';
 import {
   BrowserRouter,
@@ -25,10 +25,12 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>
     {/* <React.StrictMode> */}
+    <PersistGate loading={null} persistor={persistor}>
     <BrowserRouter>
         <Layout></Layout>
     </BrowserRouter>
     {/* </React.StrictMode> */}
+    </PersistGate>
   </Provider>
 );
 
